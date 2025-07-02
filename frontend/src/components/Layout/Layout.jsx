@@ -1,13 +1,13 @@
-import React from 'react';
-import Sidebar from '../Sidebar/Sidebar';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import Sidebar from "../Sidebar/Sidebar";
+import "./Layout.css";
 
-export default function Layout() {
+export default function Layout({ children }) {
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="layout">
       <Sidebar />
-      <main style={{ flex: 1 }}>
-        <Outlet />
+      <main className="main-content">
+        {children}
       </main>
     </div>
   );

@@ -1,30 +1,26 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-// Páginas
-import Login from '../pages/Login/Login';
-import Dashboard from '../pages/Dashboard/Dashboard';
-import Estatisticas from '../pages/Estatisticas/Estatisticas';
-import PacienteCadastro from '../pages/PacienteCadastro/PacienteCadastro';
-import PacienteConsulta from '../pages/PacienteConsulta/PacienteConsulta';
-
-// Layout
-import Layout from '../components/Layout/Layout';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "../components/Layout/Layout";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Estatisticas from "../pages/Estatisticas/Estatisticas";
+import PacienteCadastro from "../pages/PacienteCadastro/PacienteCadastro";
+import PacienteConsulta from "../pages/PacienteConsulta/PacienteConsulta";
+import Login from "../pages/Login/Login";
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
+    <Routes>
+      {/* Página inicial = Login */}
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
 
-        {/* Páginas internas com (Sidebar) */}
-        <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/estatisticas" element={<Estatisticas />} />
-          <Route path="/paciente/cadastro" element={<PacienteCadastro />} />
-          <Route path="/paciente/consulta" element={<PacienteConsulta />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      {/* Páginas dentro do Layout (com Sidebar) */}
+      <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+      <Route path="/estatisticas" element={<Layout><Estatisticas /></Layout>} />
+      <Route path="/cadastro" element={<Layout><PacienteCadastro /></Layout>} />
+      <Route path="/consulta" element={<Layout><PacienteConsulta /></Layout>} />
+
+      {/* Rota curinga */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }

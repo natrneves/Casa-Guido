@@ -1,0 +1,19 @@
+.layout {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  padding-left: 290px; /* garante espaço da sidebar fixa */
+  background-color: #f9fafc;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+    padding-left: 1rem;
+  }
+}
